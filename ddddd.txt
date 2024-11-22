@@ -1,0 +1,144 @@
+package com.example.s20211275;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
+import android.os.Bundle;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.skt.Tmap.TMapCircle;
+import com.skt.Tmap.TMapData;
+import com.skt.Tmap.TMapGpsManager;
+import com.skt.Tmap.TMapMarkerItem;
+import com.skt.Tmap.TMapPOIItem;
+import com.skt.Tmap.TMapPoint;
+import com.skt.Tmap.TMapView;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements TMapView.OnLongClickListenerCallback, LocationListener, TMapGpsManager.onLocationChangedCallback {
+
+    private TMapView tMapView = null;
+    TMapGpsManager gps = null;
+    public static String mApikey = null;
+
+    private static final String TAG = "Test Tmap";
+    Bitmap icon1, icon2;
+    TMapCircle tCircle;
+    TMapData tMapData;
+    TMapPoint point2 = null;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        LinearLayout linear = (LinearLayout) findViewById(R.id.linear);
+        tMapView = new TMapView(this);
+        mApikey = "7KY4SLTieS7hFJS6fhx771n4KbBgcBJm5GgCueur";
+        tMapView.setSKTMapApiKey(mApikey);
+
+        linear.addView(tMapView);
+        setContentView(linear);
+
+        gps = new TMapGpsManager(MainActivity.this);
+        gps.setMinTime(1);
+        gps.setMinDistance(1);
+        gps.setProvider(gps.NETWORK_PROVIDER); // 위치 제공자를 NETWORK_PROVIDER로 설정
+
+        gps.OpenGps(); // OpenGps() 호출 위치 권한 체크를 하지 않음
+
+        tMapData = new TMapData();
+
+        tMapView.setZoomLevel(16);
+        tMapView.setIconVisibility(true);
+        tMapView.setCompassMode(true);
+        tMapView.setSightVisible(true);
+        tMapView.setMapPosition(TMapView.POSITION_NAVI);
+        tMapView.setTrackingMode(true);
+    }
+
+    @Override
+    public void onLongPressEvent(ArrayList<TMapMarkerItem> arrayList,
+                                 ArrayList<TMapPOIItem> arrayList1, TMapPoint tMapPoint) {
+//        tMapView.setIconVisibility(false);
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon3);
+//
+//        Toast.makeText(getBaseContext(), String.valueOf(tMapPoint.getLatitude())+","+
+//                String.valueOf(tMapPoint.getLongitude()), Toast.LENGTH_SHORT).show();
+//        tMapView.setIcon(bitmap);
+//        tMapView.setIconVisibility(true);
+
+        // 원본 아이콘 로드
+        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon3);
+
+        //아이콘 크기 조절
+        int newWidth = 100;  // 새로운 너비
+        int newHeight = 100; // 새로운 높이
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, false);
+
+
+        TMapPoint point = new TMapPoint(tMapPoint.getLatitude(), tMapPoint.getLongitude());
+        TMapMarkerItem item1 = new TMapMarkerItem();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon3);
+        item1.setTMapPoint(point);
+        item1.setVisible(item1.VISIBLE);
+        item1.setIcon(bitmap);
+
+        item1.setIcon(resizedBitmap); // 크기가 조정된 아이콘 설정
+
+
+        item1.setCalloutTitle("넘버1");
+        item1.setCalloutSubTitle("위치 추적");
+        item1.setCanShowCallout(true);
+        item1.setAutoCalloutVisible(true);
+        Bitmap bitmap_i = BitmapFactory.decodeResource(getResources(), R.drawable.icon4);
+        item1.setCalloutRightButtonImage(bitmap_i);
+
+
+
+        // 원본 아이콘4 로드
+        Bitmap originalBitmap_i = BitmapFactory.decodeResource(getResources(), R.drawable.icon4);
+
+        // 아이콘4 크기 변경 (예: 50x50 크기로 변경)
+        int newWidth_i = 100;  // 새로운 너비
+        int newHeight_i = 100; // 새로운 높이
+        Bitmap resizedBitmap_i = Bitmap.createScaledBitmap(originalBitmap_i, newWidth_i, newHeight_i, false);
+
+        // 콜아웃 버튼 이미지 설정 (아이콘4 크기 조정된 아이콘 사용)
+        item1.setCalloutRightButtonImage(resizedBitmap_i);
+
+
+
+        tMapView.addMarkerItem("ID_01", item1);
+
+
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gps.CloseGps();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onLocationChange(Location location) {
+        tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
+        tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
+    }
+}
