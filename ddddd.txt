@@ -22,7 +22,8 @@ import com.skt.Tmap.TMapView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements TMapView.OnLongClickListenerCallback, LocationListener, TMapGpsManager.onLocationChangedCallback {
+public class MainActivity extends AppCompatActivity implements TMapView.OnLongClickListenerCallback,
+        LocationListener, TMapGpsManager.onLocationChangedCallback, TMapView.OnCalloutRightButtonClickCallback {
 
     private TMapView tMapView = null;
     TMapGpsManager gps = null;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements TMapView.OnLongCl
     TMapCircle tCircle;
     TMapData tMapData;
     TMapPoint point2 = null;
+    TMapMarkerItem item1 = new TMapMarkerItem();
+    TMapMarkerItem item2 = new TMapMarkerItem();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,11 +116,40 @@ public class MainActivity extends AppCompatActivity implements TMapView.OnLongCl
 
         // 콜아웃 버튼 이미지 설정 (아이콘4 크기 조정된 아이콘 사용)
         item1.setCalloutRightButtonImage(resizedBitmap_i);
-
-
-
         tMapView.addMarkerItem("ID_01", item1);
 
+
+
+        TMapPoint point1 = new TMapPoint(tMapPoint.getLatitude(), tMapPoint.getLongitude());
+        TMapPoint point2 = new TMapPoint(tMapPoint.getLatitude()+0.01, tMapPoint.getLongitude());
+
+        Bitmap bitmap3 = BitmapFactory.decodeResource(getResources(), R.drawable.icon3);
+        Bitmap bitmap5 = BitmapFactory.decodeResource(getResources(), R.drawable.icon5);
+        item1.setTMapPoint(point);
+        item1.setName("Target");
+        item1.setVisible(item1.VISIBLE);
+        item1.setIcon(bitmap3);
+
+        item1.setCalloutTitle("넘버1");
+        item1.setCalloutSubTitle("위치 추적");
+        item1.setCanShowCallout(true);
+        item1.setAutoCalloutVisible(true);
+
+        item2.setTMapPoint(point2);
+        item2.setName("Target");
+        item2.setVisible(item2.VISIBLE);
+        item2.setIcon(bitmap5);
+
+        item2.setCalloutSubTitle("넘버2");
+        item2.setCalloutSubTitle("위치추적");
+        item2.setCanShowCallout(true);
+        item2.setAutoCalloutVisible(true);
+        
+        Bitmap bitmap1_i = BitmapFactory.decodeResource(getResources(), R.drawable.icon4);
+        item1.setCalloutRightButtonImage(bitmap_i);
+        tMapView.addMarkerItem("ID_01", item1);
+        tMapView.addMarkerItem("ID_02", item2);
+        
 
     }
 
@@ -140,5 +172,10 @@ public class MainActivity extends AppCompatActivity implements TMapView.OnLongCl
     public void onLocationChange(Location location) {
         tMapView.setCenterPoint(location.getLongitude(), location.getLatitude());
         tMapView.setLocationPoint(location.getLongitude(), location.getLatitude());
+    }
+
+    @Override
+    public void onCalloutRightButton(TMapMarkerItem tMapMarkerItem) {
+        Toast.makeText(getApplicationContext(), "ID_01 클릭했네요", Toast.LENGTH_SHORT).show();
     }
 }
