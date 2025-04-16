@@ -1,49 +1,193 @@
 /* 전체 화면 배경 이미지 설정 */
 .mainPage {
-    height: 100vh; /* 화면 전체를 차지하도록 설정 */
-    margin: 0;
-    padding: 0;
-  }
-  
-  .hero {
-    background: url('https://mblogthumb-phinf.pstatic.net/MjAxODAyMjhfMjAg/MDAxNTE5Nzk5OTg3OTIy.scFNbrQgJlWBAY7zW3iXEFwjHwkOURB1LY_ziEl7cp8g.1DEIFNtZ3dUfNEMQVAIqgDoACPIpbWxLira0WsglCkIg.JPEG.chic7393/play1.jpg?type=w800'); /* 배경 이미지 URL (필요한 이미지로 교체) */
-    background-size: cover;
-    background-position: center;
-    height: 100vh; /* 화면을 꽉 채우는 높이 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-  }
-  
-  .hero-content {
-    max-width: 600px; /* 텍스트와 버튼이 너무 커지지 않도록 제한 */
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5); /* 배경을 살짝 어둡게 해서 텍스트 가독성 높임 */
-    border-radius: 8px;
-  }
-  
-  .hero h1 {
-    font-size: 50px;
-    margin-bottom: 20px;
-  }
-  
-  .hero p {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .download-btn {
-    padding: 15px 30px;
-    font-size: 18px;
-    background-color: #ffc107;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .download-btn:hover {
-    background-color: #e0a800;
-  }
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.hero {
+  background: url('/public/myImage/ppt.jpg') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  padding: 0 5%;
+}
+
+.hero-content {
+  max-width: 800px;
+  min-height: 500px;
+  padding: 60px 50px;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero h1 {
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.subtitle {
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.description {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #eee;
+}
+
+.features {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.feature-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #fff;
+  transition: background 0.3s;
+}
+
+.feature-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.download-btn {
+  margin-top: 20px;
+  padding: 15px 35px;
+  font-size: 18px;
+  background-color: #ffc107;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #e0a800;
+}
+
+/* 소셜 아이콘 버튼 */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  position: absolute;
+  bottom: 78px;
+  right: 20px;
+  display: flex;
+  list-style: none;
+  z-index: 1000;
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper .icon {
+  position: relative;
+  background: #ffffff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 6px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.wrapper .icon i {
+  font-size: 18px;
+  color: #333;
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  bottom: 50px;
+  font-size: 13px;
+  background: #ffffff;
+  color: #333333;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+  white-space: nowrap;
+}
+
+.wrapper .tooltip::before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+}
+
+.wrapper .icon:hover .tooltip {
+  opacity: 1;
+  bottom: 60px;
+}
+
+.facebook {
+  --color: #1877f2;
+}
+
+.x {
+  --color: #000000;
+}
+
+.instagram {
+  --color: #e4405f;
+}
+
+.github {
+  --color: #333333;
+}
+
+.youtube {
+  --color: #cd201f;
+}
+
+.icon:hover {
+  background: var(--color);
+}
+
+.icon:hover i {
+  color: white;
+}
+
+.icon:hover .tooltip {
+  background: var(--color);
+  color: white;
+}
+
+.icon:hover .tooltip::before {
+  background: var(--color);
+}

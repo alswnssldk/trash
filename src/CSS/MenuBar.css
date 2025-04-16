@@ -1,42 +1,77 @@
 /* App.css 같은 곳에 넣기 */
 
 .header {
-    background-color: #333;
-    padding: 17px 20px;
-  }
+  background-color: #2C2C2C;
+  padding: 17px 20px;
+}
   
-  .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 애니메이션 부분 */
+@keyframes slide-and-scale {
+  0% {
+    transform: translateX(0) scale(0.5);
+    position: relative;
+    top: 0;
+    color:#FFFFFF
   }
+  50% {
+    transform: translateX(4px) scale(0.5);
+    position: relative;
+    top: 0;
+  }
+  100% {
+    transform: translateX(4px) scale(1);
+    position: relative;
+    top: 0;
+    color:#FFC107
+  }
+}
+
+  /* 애니메이션 부분 */
+
+.logo a {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  align-items: center; 
+  display: inline-flex; 
+}
+
+.logo1 {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  animation: slide-and-scale 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
+}
+
+
+.menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding-right: 5px;
+}
+
+.menu-item {
+  margin-left: 20px;
+}
+
+.menu-item a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.menu-item a:hover {
+  color: #ffcc00;
+}
   
-  .logo a {
-    color: #fff;
-    font-size: 24px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .menu {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding-right: 5px;
-  }
-  
-  .menu-item {
-    margin-left: 20px;
-  }
-  
-  .menu-item a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s;
-  }
-  
-  .menu-item a:hover {
-    color: #ffcc00;
-  }
   

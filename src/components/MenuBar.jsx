@@ -5,7 +5,9 @@ function MenuBar() {
         <header className="header">
             <nav className="navbar">
                 <div className="logo">
-                    <a href="/">GestureOn</a>
+                    <a href="/">
+                        Gesture<span className="logo1">On</span>
+                    </a>
                 </div>
                 <ul className="menu">
                     <li className="menu-item">
