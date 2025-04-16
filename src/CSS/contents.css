@@ -1,0 +1,25 @@
+.motion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+  }
+  
+  .motion-item {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+  }
+  
+  .motion-item.reverse {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; 
+    margin-right: 300px;
+  }
+  
+  .image-box {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+  }

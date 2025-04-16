@@ -1,0 +1,49 @@
+/* 전체 화면 배경 이미지 설정 */
+.mainPage {
+    height: 100vh; /* 화면 전체를 차지하도록 설정 */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .hero {
+    background: url('https://mblogthumb-phinf.pstatic.net/MjAxODAyMjhfMjAg/MDAxNTE5Nzk5OTg3OTIy.scFNbrQgJlWBAY7zW3iXEFwjHwkOURB1LY_ziEl7cp8g.1DEIFNtZ3dUfNEMQVAIqgDoACPIpbWxLira0WsglCkIg.JPEG.chic7393/play1.jpg?type=w800'); /* 배경 이미지 URL (필요한 이미지로 교체) */
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* 화면을 꽉 채우는 높이 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .hero-content {
+    max-width: 600px; /* 텍스트와 버튼이 너무 커지지 않도록 제한 */
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); /* 배경을 살짝 어둡게 해서 텍스트 가독성 높임 */
+    border-radius: 8px;
+  }
+  
+  .hero h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .download-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .download-btn:hover {
+    background-color: #e0a800;
+  }
